@@ -1,5 +1,5 @@
 [package]
-name = "url_shortener"
+name = "shortener"
 version = "0.1.0"
 authors = ["Andrew"]
 edition = "2018"
