@@ -13,14 +13,14 @@ async fn add(req: HttpRequest, d: web::Data<MockedDb>) -> HttpResponse {
     let url = req.match_info().query("tail");
     match d.add(&url) {
         Ok(entry) => HttpResponse::Ok().json(entry),
-        Err(e) => HttpResponse::Ok().body(format!("Error: {:?}", e)),
+        Err(e) => HttpResponse::InternalServerError().body(format!("Error: {:?}", e)),
     }
 }
 
 async fn get(web::Path(name): web::Path<String>, d: web::Data<MockedDb>) -> HttpResponse {
     match d.get(&name) {
         Ok(entry) => HttpResponse::Ok().json(entry),
-        Err(e) => HttpResponse::Ok().body(format!("Error: {:?}", e)),
+        Err(e) => HttpResponse::BadRequest().body(format!("Error: {:?}", e)),
     }
 }
 
